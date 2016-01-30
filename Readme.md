@@ -6,12 +6,12 @@ This is a tax calculator for one individual U.S. tax return---Internal Revenue S
 Quick start
 -----------
 
-1. Run `python taxes.py`. It will generate a file named `interview.py`.
+1. Run `python3 taxes.py`. It will generate a file named `interview.py`.
 2. Open `interview.py` in your text editor, and follow the instructions to provide
    information about your tax situation.
-3. Run `python taxes.py` again. It will generate `inform.py`.
+3. Run `python3 taxes.py` again. It will generate `inform.py`.
 4. Open `inform.py` and fill in the information from your W-2s and other such sources.
-5. Run `python taxes.py` again. It will calculate your taxes and print the line-by-line
+5. Run `python3 taxes.py` again. It will calculate your taxes and print the line-by-line
    calculations to the screen.
 
 
