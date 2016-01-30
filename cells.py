@@ -5,7 +5,7 @@ class cell():
     def __init__(self, name, line, calc, parents, flag='c', situation=True):
         self.name=name
         self.form=None
-        self.name=line
+        self.line=line
         self.parents=parents
         self.calc=calc
         self.done=False
@@ -28,6 +28,7 @@ class cell():
 
         if (self.parents != None):
             for i in self.parents:
+                print(cell_list[i].name, ": computing ", cell_list[i].calc)
                 cell_list[i].compute()
             for i in self.parents:
                 if (not cell_list[i].check_done()):
@@ -51,16 +52,15 @@ cell_list = dict()
 
 f1040 = dict(
 taxable_income = cell('taxable income', 55, '1', (None)),
-tax = cell('tax', 56, 'tax_calc(CV("taxable_income"))', ('taxable_income')),
-withheld = cell('withheld', 57, 'withheld_fed', (None)),
-owed = cell('taxes owed', 58, 'if (CV("withheld") < CV("tax")) then CV("tax")-CV("withheld") else 0', ('withheld', 'tax'))
+tax = cell('tax', 56, "tax_calc(CV('taxable_income'))", ('taxable_income',)),
+withheld = cell('withheld', 57, 'withheld_fed', (None), 'u'),
+owed = cell('taxes owed', 58, 'CV("tax")-CV("withheld") if (CV("withheld") < CV("tax")) else 0', ('withheld', 'tax'))
 )
 
 
 def add_a_form(name):
     global cell_list
     for i in eval(name).values():
-        print(i)
         i.form=name
     cell_list =dict(list(cell_list.items()) + list(eval(name).items()))
 
@@ -71,7 +71,8 @@ def setup_inform():
     for i in cell_list.values():
         if (i.flag=='u'):
             f.write(
-"""#%s
+"""
+#%s
 %s = 0
 """ % (i.name, i.calc))
     f.close
@@ -84,6 +85,6 @@ if (not pathlib.Path("inform.py").exists()):
     print("Have generated inform.py. Please fill it in and rerun this script.")
     sys.exit(1)
 
-import inform
+from inform import *
 
 print(cell_list['owed'].name, cell_list['owed'].compute())
