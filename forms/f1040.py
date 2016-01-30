@@ -121,8 +121,8 @@ payments_divider=cell('>>>>>>>>>>>> Payments                              ', 63.
 #72 Credit for federal tax on fuels. Attach Form 4136 . . . . 72
 #73 Credits from Form: a 2439 b Reserved c 8885 d 73
 total_payments=cell("Total payments", 74, 'CV("fed_withheld")', ('fed_withheld',)),
-refund=cell("Refund!", 75, 'max(CV("total_tax")-CV("total_payments"), 0)'
+refund=cell("Refund!", 75, 'max(CV("total_payments")-CV("total_tax"), 0)'
                          , ('total_tax', 'total_payments')),
-tax_owed=cell("Tax owed", 78, 'max(CV("total_payments")-CV("total_tax"), 0)'
+tax_owed=cell("Tax owed", 78, 'max(CV("total_tax")-CV("total_payments"), 0)'
                             , ('total_tax', 'total_payments')),
 )
