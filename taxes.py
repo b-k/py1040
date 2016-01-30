@@ -34,4 +34,5 @@ if (not pathlib.Path("inform.py").exists()):
 
 from inform import *
 
-print(cell_list['owed'].name, cell_list['owed'].compute())
+print(cell_list['refund'].name, cell_list['refund'].compute())
+print(cell_list['tax_owed'].name, cell_list['tax_owed'].compute())
