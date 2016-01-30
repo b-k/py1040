@@ -3,7 +3,6 @@ cell_list = dict()
 class cell():
     def __init__(self, name, line, calc, parents=(None), flag='c', situation=True):
         self.name=name
-        self.form=None
         self.line=line
         self.parents=parents
         self.calc=calc

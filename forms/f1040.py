@@ -21,12 +21,13 @@ def deductions():
 
 f1040 = dict(
 exemptions=cell('exemptions', 6, 'exemptions', flag='u'),
+income_divider=cell('>>>>>>>>>>>> Income                                   ', 6.9, '0'),
 wages=cell("Wages, salaries, tips, from form W-2", 7, 'wages', flag='u'),
 interest=cell("Taxable interest", 8, 'interest', flag='u'),
 tax_free_interest=cell("Tax-exempt interest", 8.5, 'tax_free_interest', flag='u'),
 dividends=cell("Ordinary dividends", 9 , 'dividends', flag='u'),
 qualified_dividends=cell("Qualified dividends", 9.5, 'qualified_dividends', flag='u'),
-taxable_tax_refunds=cell("Taxable refunds, credits, or offsets of state and local income taxes", 10, 'taxable_tax_refunds', flag='u'),
+taxable_tax_refunds=cell("Taxable state/local income tax refunds/credits/offsets", 10, 'taxable_tax_refunds', flag='u'),
 alimony=cell('Alimony received', 11, 'alimony', flag='u'),
 sched_c=cell('Schedule C business income', 12, '0'),
 cap_gains=cell("Capital gains", 13, 'cap_gains', flag='u'),
@@ -46,7 +47,8 @@ total_in=cell("Total income", 22,
 "CV('wages') + CV('interest') + CV('dividends') + CV('taxable_tax_refunds') + CV('alimony') + CV('sched_c') + CV('cap_gains') +CV('taxable_ira') + CV('taxable_pension') + CV('rents_and_royalties') + CV('farm_income') + CV('unemployment') + CV('taxable_ss_benefits') + CV('other_in')",
 ('wages', 'interest', 'dividends', 'taxable_tax_refunds', 'alimony', 'sched_c', 'cap_gains','taxable_ira', 'taxable_pension','rents_and_royalties', 'farm_income', 'unemployment', 'taxable_ss_benefits', 'other_in')),
 
-#Adjusted Gross Income
+agi_divider=cell('>>>>>>>>>>>> AGI                                   ', 22.9, '0'),
+
 #23 Educator expenses . . . . . . . . . . . 23
 #24 Certain business expenses of reservists, performing artists, and
 #fee-basis government officials. Attach Form 2106 or 2106-EZ 24
@@ -64,6 +66,8 @@ total_in=cell("Total income", 22,
 #36 Add lines 23 through 35 . . . . . . . . . . . . . . . . . . . 36
 
 subtractions_from_income=cell("Sum of subtractions from gross income", 36, '0'),
+
+t_and_i_divider=cell('>>>>>>>>>>>> Taxes and income                      ', 36.9, '0'),
 AGI=cell("Adjusted gross income", 37, "CV('total_in') - CV('subtractions_from_income')",
 ('total_in', 'subtractions_from_income')),
 agi_again=cell("Adjusted gross income, again", 38, "CV('AGI')", ('AGI',)),
@@ -104,6 +108,8 @@ obamacare_fee=cell("Health care individual responsibility", 61, '0'),
 total_tax=cell("Total tax", 63, 'CV("tax_minus_credits") + CV("obamacare_fee")', 
 		    ("tax_minus_credits", "obamacare_fee")),
 fed_withheld=cell("Federal income tax withheld from Forms W-2 and 1099", 64, 'federal_tax_withheld', flag='u'),
+
+payments_divider=cell('>>>>>>>>>>>> Payments                              ', 63.9, '0'),
 #65 2015 estimated tax payments and amount applied from 2014 return 65
 #66a Earned income credit (EIC) . . . . . . . . . . 66a
 #b Nontaxable combat pay election 66b
