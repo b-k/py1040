@@ -1,0 +1,7 @@
+This software is licensed under the GNU GPL v2, with one clarification as follows:
+
+--An application hosted on a server and remotely operated by users, such
+as a web application or database server, is understood to be distribution
+of the software, and therefore all GPL v2 clauses regarding distribution
+apply. For example, a web application must include a link for downloading
+the application source code.
