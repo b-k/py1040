@@ -18,16 +18,16 @@ Quick start
 How and why
 -----------
 
-There are two ways to view a tax return The first is as a form, as printed by the
+There are two ways to view a tax return. The first is as a form, as printed by the
 IRS for a century. Because a key goal is to allow users to fill in their tax forms,
 this is what the final output has to look like.
 
 The second view is as a dependency tree. We want to calculate a single value: taxes
 owed or refunded, but to find that value, we need to find taxes, which means we need
 to calculate AGI and credits, and so on back to the original user data. This is the
-internal format by which taxes are represented.
+internal format by which this script represents taxes.
 
-In short, having the directed acyclic graph underlying the tax forms lets us do real
+In short, having the directed acyclic graph (DAG) underlying the tax forms lets us do real
 work that would be onerous or painful using the form view.  By re-presenting the tax
 calculation as a tree, we have the ability to trace back what led to any surprises
 on the tax form, aggregate multiple users, and otherwise process the information
@@ -69,7 +69,6 @@ the cell's parent cells.
 Adding a form, then, consists of transcribing this information for each needed line. This
 is straightforward, and has proven to take only a few seconds per line.
 You will need to modify the list of parent cells in at least one already-existing cell.
-
 Then, add a line to `taxes.py` to read in your form (you'll find the other form read-ins
 to copy/paste/modify).
 
