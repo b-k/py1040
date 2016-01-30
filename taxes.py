@@ -13,6 +13,9 @@ def add_a_form(name):
 exec(open("forms/f1040.py").read())
 add_a_form('f1040')
 
+exec(open("forms/schedule_a.py").read())
+add_a_form('schedule_a')
+
 def setup_inform():
     f = open("inform.py", "w")
     for i in cell_list.values():
@@ -25,8 +28,20 @@ def setup_inform():
     f.close
 
 
+status="no interview yet"
 
 import pathlib, sys
+from shutil import copyfile
+if (not pathlib.Path("interview.py").exists()):
+    copyfile("forms/interview_template.py", "interview.py")
+    print("Have generated interview.py. Please fill it in and rerun this script.")
+    sys.exit(1)
+
+exec(open("interview.py").read())
+if (status=="no interview yet"):
+    print("Please follow the steps in interview.py and rerun this script.")
+    sys.exit(1)
+
 if (not pathlib.Path("inform.py").exists()):
     setup_inform()
     print("Have generated inform.py. Please fill it in and rerun this script.")

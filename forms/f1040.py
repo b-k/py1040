@@ -9,9 +9,9 @@ def tax_calc(inval):
     if inval < 186350: return 18193.75 + .28*(inval-89350)
     if inval < 405100: return 45353.75 + .33*(inval-186350)
 
-def deduction():
+def deductions():
     if itemizing:
-        return CV('Schedule_A')
+        return CV('total_itemized_deductions')
     if status=="married" or status=="single":
         return 6300
     elif status=="married filing jointly":
@@ -70,7 +70,7 @@ agi_again=cell("Adjusted gross income, again", 38, "CV('AGI')", ('AGI',)),
 
 #39 elderly, blind
 
-deductions=cell('Deductions', 40, 'deductions()', ('Schedule_A',)),
+deductions=cell('Deductions', 40, 'deductions()', ('total_itemized_deductions',)),
 agi_minus_deductions=cell("AGI minus deductions", 41,
 			'CV("agi_again") - CV("deductions")', ('agi_again', 'deductions')),
 exemption_amount=cell("Exemption amount", 42, 'exemptions*exemption_multiplier'),
