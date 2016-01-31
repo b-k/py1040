@@ -8,12 +8,6 @@ def add_a_form(name):
     cell_list =dict(list(cell_list.items()) + list(eval(name).items()))
 
 
-exec(open("forms/f1040.py").read())
-add_a_form('f1040')
-
-exec(open("forms/schedule_a.py").read())
-add_a_form('schedule_a')
-
 def setup_inform():
     f = open("inform.py", "w")
     for i in cell_list.values():
@@ -43,7 +37,8 @@ def print_the_tree(starting_cell, level=0):
     if (parents != None):
         print("%s├───┐" % ("│   "*level))
         for i in parents:
-            print_the_tree(i, level+1)
+            if (cell_list[i].situation):
+                print_the_tree(i, level+1)
 
 # The main routine: build interview and inform, calculate taxes, print
 
@@ -66,11 +61,20 @@ if (not pathlib.Path("inform.py").exists()):
     print("Have generated inform.py. Please fill it in and rerun this script.")
     sys.exit(1)
 
+from interview import *
 from inform import *
+
+exec(open("forms/f1040.py").read())
+add_a_form('f1040')
+
+exec(open("forms/schedule_a.py").read())
+add_a_form('schedule_a')
 
 print(cell_list['refund'].name, cell_list['refund'].compute())
 print(cell_list['tax_owed'].name, cell_list['tax_owed'].compute())
 print_a_form("Form 1040", f1040)
+if itemizing:
+    print_a_form("Schedule A", schedule_a)
 
 print("\n")
 print_the_tree('refund')
