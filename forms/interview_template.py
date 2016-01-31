@@ -10,3 +10,7 @@
 
 #Will you be itemizing deductions?
 itemizing=False
+
+#Are you or your spouse over 65?
+over_65=False
+spouse_over_65=False

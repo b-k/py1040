@@ -10,14 +10,16 @@ def tax_calc(inval):
     if inval < 405100: return 45353.75 + .33*(inval-186350)
 
 def deductions():
-    if itemizing:
-        return CV('total_itemized_deductions')
+    ded=0
     if status=="married" or status=="single":
-        return 6300
+        ded=6300
     elif status=="married filing jointly":
-        return 12600
+        ded=12600
     elif status=="head of household":
-        return 9250
+        ded=9250
+    if itemizing:
+        ded=max(ded, CV('total_itemized_deductions'))
+    return ded
 
 f1040 = dict(
 exemptions=cell('exemptions', 6, 'exemptions', flag='u'),
