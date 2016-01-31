@@ -3,8 +3,7 @@ py1040
 
 This is a tax calculator for one individual U.S. tax return---Internal Revenue Service form 1040.
 
-Quick start
------------
+### Quick start
 
 1. Run `python3 taxes.py`. It will generate a file named `interview.py`.
 2. Open `interview.py` in your text editor, and follow the instructions to provide
@@ -15,8 +14,7 @@ Quick start
    calculations to the screen.
 
 
-How and why
------------
+### How and why
 
 There are two ways to view a tax return. The first is as a form, as printed by the
 IRS for a century. Because a key goal is to allow users to fill in their tax forms,
@@ -36,8 +34,8 @@ financial situation gives you the freedom to act on what-if scenarios, or if you
 a tax researcher considering the situations of diverse taxpayers, the structures here
 are hopefully more amenable to your needs.
 
-Can I trust it?
----------------
+
+### Can I trust it?
 
 At the moment, it's a version-zero draft for discussion; see below about helping to
 get it more functional. It seems like we could get it to work well for most tax situations
@@ -55,11 +53,9 @@ enough to put in all-caps:
 > PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED,
 > INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
 > FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE
-> PROGRAM IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL
-> NECESSARY SERVICING, REPAIR OR CORRECTION.
+> PROGRAM IS WITH YOU.
 
-Contributing
-------------
+### Contributing
 
 Each form is represented as a file holding a dictionary of cells, where each cell
 represents a line of the tax code. The cell includes the text to print, the line number,
