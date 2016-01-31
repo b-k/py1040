@@ -8,22 +8,32 @@ def add_a_form(name):
     cell_list =dict(list(cell_list.items()) + list(eval(name).items()))
 
 
-def setup_inform():
+import pdb
+def setup_inform(print_out):
+    if not print_out:  #Just adjust the calcs
+        for i in cell_list.items():
+            if (i[1].flag.find('u')>-1):
+                i[1].calc="%s" %(i[0],)
+        return
+
     f = open("inform.py", "w")
-    for i in cell_list.values():
-        if (i.flag=='u'):
+    for i in cell_list.items():
+        if (i[1].flag.find('u')>-1):
             f.write(
 """
 #%s
 %s = 0
-""" % (i.name, i.calc))
+""" % (i[1].name, i[0]))
     f.close
+
+
 
 def print_a_form(name, inlist):
     print(">>>>>>>>>> %s <<<<<<<<<" %(name,))
     out=list()
     for i in inlist.keys():
-    	out.append((cell_list[i].line, cell_list[i].name, cell_list[i].value))
+        if show_optional_zeros or cell_list[i].value != 0 or cell_list[i].flag.find('c')==-1:
+            out.append((cell_list[i].line, cell_list[i].name, cell_list[i].value))
     out.sort()
     max_len = 0
     for i in out:
@@ -56,13 +66,7 @@ if (status=="no interview yet"):
     print("Please follow the steps in interview.py and rerun this script.")
     sys.exit(1)
 
-if (not pathlib.Path("inform.py").exists()):
-    setup_inform()
-    print("Have generated inform.py. Please fill it in and rerun this script.")
-    sys.exit(1)
-
 from interview import *
-from inform import *
 
 exec(open("forms/f1040.py").read())
 add_a_form('f1040')
@@ -70,11 +74,19 @@ add_a_form('f1040')
 exec(open("forms/schedule_a.py").read())
 add_a_form('schedule_a')
 
+if (not pathlib.Path("inform.py").exists()):
+    setup_inform(print_out=True)
+    print("Have generated inform.py. Please fill it in and rerun this script.")
+    sys.exit(1)
+
+from inform import *
+setup_inform(print_out=False)
+
 print(cell_list['refund'].name, cell_list['refund'].compute())
 print(cell_list['tax_owed'].name, cell_list['tax_owed'].compute())
 print_a_form("Form 1040", f1040)
 if itemizing:
     print_a_form("Schedule A", schedule_a)
 
-print("\n")
-print_the_tree('refund')
+#print("\n")
+#print_the_tree('refund')
