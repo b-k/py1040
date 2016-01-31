@@ -49,6 +49,14 @@ def print_the_tree(starting_cell, level=0):
             if (cell_list[i].situation):
                 print_the_tree(i, level+1)
 
+def print_to_graphviz(starting_cell, f, level=0):
+    parents = cell_list[starting_cell].parents
+    if (parents != None):
+        for i in parents:
+            f.write("%s -> %s\n" % (i, starting_cell))
+            print_to_graphviz(i, f, level+1)
+
+# The main routine: build interview and inform, calculate taxes, print
 
 # The main routine: build interview and inform, calculate taxes, print
 status="no interview yet"
@@ -92,5 +100,10 @@ if itemizing:
 if have_rr:
     print_a_form("Schedule E", schedule_e)
 
-#print("\n")
-#print_the_tree('refund')
+print("\n")
+print_the_tree('refund')
+f=open("graph.dot", "w")
+#f.write("digraph {")
+print_to_graphviz('refund', f)
+#f.write("}")
+f.close()

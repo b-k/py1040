@@ -1,0 +1,1 @@
+sort graph.dot | uniq | sed -e '1idigraph{ ' -e '$a}' | dot -Tpng > graph.png
