@@ -22,33 +22,33 @@ def deductions():
     return ded
 
 f1040 = dict(
-exemptions=cell('exemptions', 6, 'exemptions', flag='u'),
+exemptions=cell('exemptions', 6, flag='u'),
 income_divider=cell('>>>>>>>>>>>> Income                                   ', 6.9, '0'),
-wages=cell("Wages, salaries, tips, from form W-2", 7, 'wages', flag='u'),
-interest=cell("Taxable interest", 8, 'interest', flag='u'),
-tax_free_interest=cell("Tax-exempt interest", 8.5, 'tax_free_interest', flag='uc'),
-dividends=cell("Ordinary dividends", 9 , 'dividends', flag='u'),
-qualified_dividends=cell("Qualified dividends", 9.5, 'qualified_dividends', flag='u'),
-taxable_tax_refunds=cell("Taxable state/local income tax refunds/credits/offsets", 10, 'taxable_tax_refunds', flag='u'),
-alimony=cell('Alimony received', 11, 'alimony', flag='uc'),
+wages=cell("Wages, salaries, tips, from form W-2", 7, flag='u'),
+interest=cell("Taxable interest", 8, flag='u'),
+tax_free_interest=cell("Tax-exempt interest", 8.5, flag='uo'),
+dividends=cell("Ordinary dividends", 9, flag='u'),
+qualified_dividends=cell("Qualified dividends", 9.5, flag='u'),
+taxable_tax_refunds=cell("Taxable state/local income tax refunds/credits/offsets", 10, flag='u'),
+alimony=cell('Alimony received', 11, flag='uo'),
 sched_c=cell('Schedule C business income', 12, '0'),
-cap_gains=cell("Capital gains", 13, 'cap_gains', flag='u'),
-noncap_gains=cell("Other gains or (losses), from Form 4797 (not implemented)", 14, '0', flag='c'),
-ira=cell("IRA distributions", 15, 'ira_income', flag='uc'),
-taxable_ira=cell("Taxable IRA distributions", 15.5, 'taxable_ira_income', flag='uc'),
-pension=cell("Pensions and annuities",16, 'pension', flag='uc', situation='over_65 or spouse_over_65'),
-taxable_pension=cell("Pensions and annuities",16.5, 'taxable_pension', flag='uc', situation='over_65 or spouse_over_65'),
-rents_and_royalties=cell("Rents and royalties (&c) from Schedule E", 17, '0', flag='c'),
-farm_income=cell("Farm income from Schedule F (not implemented)", 18, '0', flag='c'),
-unemployment=cell("Unemployment compensation", 19, 'unemployment', flag='uc'),
-ss_benefits=cell("Social security benefits", 20, 'ss_benefits', flag='uc', situation='over_65 or spouse_over_65'),
-taxable_ss_benefits=cell("Taxable social security benefits", 20.5, 'taxable_ss_benefits',
-                            flag='uc', situation='over_65 or spouse_over_65'),
-other_in=cell("Other income.", 21, 'other_in', flag='uc'),
+cap_gains=cell("Capital gains", 13, flag='u'),
+noncap_gains=cell("Other gains or (losses), from Form 4797 (not implemented)", 14, '0', flag='o'),
+ira_income=cell("IRA distributions", 15, flag='uo'),
+taxable_ira_income=cell("Taxable IRA distributions", 15.5, flag='uo'),
+pension=cell("Pensions and annuities",16, flag='uo', situation='over_65 or spouse_over_65'),
+taxable_pension=cell("Pensions and annuities",16.5, flag='uo', situation='over_65 or spouse_over_65'),
+rents_and_royalties=cell("Rents and royalties (&c) from Schedule E", 17, 'CV("rr_income")', ('rr_income',), flag='o'),
+farm_income=cell("Farm income from Schedule F (not implemented)", 18, '0', flag='o'),
+unemployment=cell("Unemployment compensation", 19, flag='uo'),
+ss_benefits=cell("Social security benefits", 20, flag='uo', situation='over_65 or spouse_over_65'),
+taxable_ss_benefits=cell("Taxable social security benefits", 20.5,
+                            flag='uo', situation='over_65 or spouse_over_65'),
+other_in=cell("Other income.", 21, flag='uo'),
 
 total_in=cell("Total income", 22, 
-"CV('wages') + CV('interest') + CV('dividends') + CV('taxable_tax_refunds') + CV('alimony') + CV('sched_c') + CV('cap_gains') +CV('taxable_ira') + CV('taxable_pension') + CV('rents_and_royalties') + CV('farm_income') + CV('unemployment') + CV('taxable_ss_benefits') + CV('other_in')",
-('wages', 'interest', 'dividends', 'taxable_tax_refunds', 'alimony', 'sched_c', 'cap_gains','taxable_ira', 'taxable_pension','rents_and_royalties', 'farm_income', 'unemployment', 'taxable_ss_benefits', 'other_in')),
+"CV('wages') + CV('interest') + CV('dividends') + CV('taxable_tax_refunds') + CV('alimony') + CV('sched_c') + CV('cap_gains') +CV('taxable_ira_income') + CV('taxable_pension') + CV('rents_and_royalties') + CV('farm_income') + CV('unemployment') + CV('taxable_ss_benefits') + CV('other_in')",
+('wages', 'interest', 'dividends', 'taxable_tax_refunds', 'alimony', 'sched_c', 'cap_gains','taxable_ira_income', 'taxable_pension','rents_and_royalties', 'farm_income', 'unemployment', 'taxable_ss_benefits', 'other_in')),
 
 agi_divider=cell('>>>>>>>>>>>> AGI                                   ', 22.9, '0'),
 
@@ -110,7 +110,7 @@ obamacare_fee=cell("Health care individual responsibility", 61, '0'),
 #62 Taxes from: a Form 8959 b Form 8960 c Instructions; enter code(s) 62
 total_tax=cell("Total tax", 63, 'CV("tax_minus_credits") + CV("obamacare_fee")', 
 		    ("tax_minus_credits", "obamacare_fee")),
-fed_withheld=cell("Federal income tax withheld from Forms W-2 and 1099", 64, 'federal_tax_withheld', flag='u'),
+federal_tax_withheld=cell("Federal income tax withheld from Forms W-2 and 1099", 64, flag='u'),
 
 payments_divider=cell('>>>>>>>>>>>> Payments                              ', 63.9, '0'),
 #65 2015 estimated tax payments and amount applied from 2014 return 65
@@ -123,7 +123,7 @@ payments_divider=cell('>>>>>>>>>>>> Payments                              ', 63.
 #71 Excess social security and tier 1 RRTA tax withheld . . . . 71
 #72 Credit for federal tax on fuels. Attach Form 4136 . . . . 72
 #73 Credits from Form: a 2439 b Reserved c 8885 d 73
-total_payments=cell("Total payments", 74, 'CV("fed_withheld")', ('fed_withheld',)),
+total_payments=cell("Total payments", 74, 'CV("federal_tax_withheld")', ('federal_tax_withheld',)),
 refund=cell("Refund!", 75, 'max(CV("total_payments")-CV("total_tax"), 0)'
                          , ('total_tax', 'total_payments')),
 tax_owed=cell("Tax owed", 78, 'max(CV("total_tax")-CV("total_payments"), 0)'

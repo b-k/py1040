@@ -8,7 +8,6 @@ def add_a_form(name):
     cell_list =dict(list(cell_list.items()) + list(eval(name).items()))
 
 
-import pdb
 def setup_inform(print_out):
     if not print_out:  #Just adjust the calcs
         for i in cell_list.items():
@@ -32,7 +31,7 @@ def print_a_form(name, inlist):
     print(">>>>>>>>>> %s <<<<<<<<<" %(name,))
     out=list()
     for i in inlist.keys():
-        if show_optional_zeros or cell_list[i].value != 0 or cell_list[i].flag.find('c')==-1:
+        if show_optional_zeros or cell_list[i].value != 0 or cell_list[i].flag.find('o')==-1:
             out.append((cell_list[i].line, cell_list[i].name, cell_list[i].value))
     out.sort()
     max_len = 0
@@ -50,8 +49,8 @@ def print_the_tree(starting_cell, level=0):
             if (cell_list[i].situation):
                 print_the_tree(i, level+1)
 
-# The main routine: build interview and inform, calculate taxes, print
 
+# The main routine: build interview and inform, calculate taxes, print
 status="no interview yet"
 
 import pathlib, sys
@@ -68,11 +67,21 @@ if (status=="no interview yet"):
 
 from interview import *
 
-exec(open("forms/f1040.py").read())
-add_a_form('f1040')
+import os
+import pdb
+for f in os.listdir('forms'):
+    #pdb.set_trace()
+    fsplit=f.partition('.')
+    if f=='interview_template.py' or fsplit[2]!="py": continue
+    print("Reading forms/"+f)
+    exec(open("forms/"+f).read())
+    add_a_form(fsplit[0])
 
-exec(open("forms/schedule_a.py").read())
-add_a_form('schedule_a')
+#exec(open("forms/f1040.py").read())
+#add_a_form('f1040')
+
+#exec(open("forms/schedule_a.py").read())
+#add_a_form('schedule_a')
 
 if (not pathlib.Path("inform.py").exists()):
     setup_inform(print_out=True)
@@ -88,5 +97,5 @@ print_a_form("Form 1040", f1040)
 if itemizing:
     print_a_form("Schedule A", schedule_a)
 
-#print("\n")
-#print_the_tree('refund')
+print("\n")
+print_the_tree('refund')

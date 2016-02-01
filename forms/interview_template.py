@@ -21,3 +21,6 @@ spouse_over_65=False
 # Should I print out fields that you left at zero and can be left blank when
 # filling in your forms?
 show_optional_zeros=False
+
+# Should I print debugging information?
+debug=False

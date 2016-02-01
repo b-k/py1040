@@ -22,7 +22,7 @@ class cell():
         return True
 
     def compute(self):
-        if (self.done): return self.value
+        if self.done: return self.value
 
         if (self.parents != None):
             for i in self.parents:
@@ -31,5 +31,6 @@ class cell():
                 if (not cell_list[i].check_done()):
                     print("Missing dependency for", self.name, "; need", cell_list[i].name)
                     return False
+        if debug: print ("Computing "+self.name)
         self.value = eval(self.calc)
         self.done=True
