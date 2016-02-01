@@ -73,15 +73,8 @@ for f in os.listdir('forms'):
     #pdb.set_trace()
     fsplit=f.partition('.')
     if f=='interview_template.py' or fsplit[2]!="py": continue
-    print("Reading forms/"+f)
     exec(open("forms/"+f).read())
     add_a_form(fsplit[0])
-
-#exec(open("forms/f1040.py").read())
-#add_a_form('f1040')
-
-#exec(open("forms/schedule_a.py").read())
-#add_a_form('schedule_a')
 
 if (not pathlib.Path("inform.py").exists()):
     setup_inform(print_out=True)
@@ -91,11 +84,13 @@ if (not pathlib.Path("inform.py").exists()):
 from inform import *
 setup_inform(print_out=False)
 
-print(cell_list['refund'].name, cell_list['refund'].compute())
-print(cell_list['tax_owed'].name, cell_list['tax_owed'].compute())
+cell_list['refund'].compute()
+cell_list['tax_owed'].compute()
 print_a_form("Form 1040", f1040)
 if itemizing:
     print_a_form("Schedule A", schedule_a)
+if have_rr:
+    print_a_form("Schedule E", schedule_e)
 
-print("\n")
-print_the_tree('refund')
+#print("\n")
+#print_the_tree('refund')

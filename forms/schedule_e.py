@@ -55,3 +55,6 @@ sched_e_losses=cell("Royalty losses plus possibly limited rental losses", 25,
     ("rents_received", "royalties_received", "net_rr", "deductible_rr_losses")),
 rr_income=cell("Total rents and royalties", 26, 'CV("sched_e_income")+CV("sched_e_losses")', ('sched_e_income', 'sched_e_losses')) 
 )
+
+for i in schedule_e.values():
+    i.situation = i.situation and have_rr

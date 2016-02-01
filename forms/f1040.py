@@ -9,6 +9,21 @@ def tax_calc(inval):
     if inval < 186350: return 18193.75 + .28*(inval-89350)
     if inval < 405100: return 45353.75 + .33*(inval-186350)
 
+def eitc(income, kids):
+    #See http://www.taxpolicycenter.org/taxfacts/displayafact.cfm?Docid=36 
+    #phase-in rate, plateu start, plateu value, plateu end, phase-out rate, zero point
+    data=[[7.65, 6610, 506, 8270, 7.65, 14880],
+          [34, 9920, 3373,  18190, 15.98, 39296],
+          [40, 13931, 5572, 18190, 21.06, 44648],
+          [45, 13930, 6269, 18190, 21.06, 47955]]
+    row=kids if kids <=3 else 3
+    if income < 0: print("Negative income! (%s) Please fix." % (income,))
+    if income >= data[row][5]: return 0
+    if income >= data[row][3]: return income*data[row][4]/100.
+    if income <= data[row][1]: return income*data[row][0]/100.
+    return data[row][2]
+
+
 def deductions():
     ded=0
     if status=="married" or status=="single":
@@ -38,7 +53,7 @@ ira_income=cell("IRA distributions", 15, flag='uo'),
 taxable_ira_income=cell("Taxable IRA distributions", 15.5, flag='uo'),
 pension=cell("Pensions and annuities",16, flag='uo', situation='over_65 or spouse_over_65'),
 taxable_pension=cell("Pensions and annuities",16.5, flag='uo', situation='over_65 or spouse_over_65'),
-rents_and_royalties=cell("Rents and royalties (&c) from Schedule E", 17, 'CV("rr_income")', ('rr_income',), flag='o'),
+rents_and_royalties=cell("Rents and royalties (&c) from Schedule E", 17, 'CV("rr_income") if have_rr else 0', ('rr_income',), flag='o'),
 farm_income=cell("Farm income from Schedule F (not implemented)", 18, '0', flag='o'),
 unemployment=cell("Unemployment compensation", 19, flag='uo'),
 ss_benefits=cell("Social security benefits", 20, flag='uo', situation='over_65 or spouse_over_65'),
@@ -114,7 +129,7 @@ federal_tax_withheld=cell("Federal income tax withheld from Forms W-2 and 1099",
 
 payments_divider=cell('>>>>>>>>>>>> Payments                              ', 63.9, '0'),
 #65 2015 estimated tax payments and amount applied from 2014 return 65
-#66a Earned income credit (EIC) . . . . . . . . . . 66a
+eitc=cell("Earned income credit (EIC)", 66.5, 'eitc(CV("agi_again"), kids)', ('agi_again',)),
 #b Nontaxable combat pay election 66b
 #67 Additional child tax credit. Attach Schedule 8812 . . . . . 67
 #68 American opportunity credit from Form 8863, line 8 . . . 68
@@ -123,7 +138,7 @@ payments_divider=cell('>>>>>>>>>>>> Payments                              ', 63.
 #71 Excess social security and tier 1 RRTA tax withheld . . . . 71
 #72 Credit for federal tax on fuels. Attach Form 4136 . . . . 72
 #73 Credits from Form: a 2439 b Reserved c 8885 d 73
-total_payments=cell("Total payments", 74, 'CV("federal_tax_withheld")', ('federal_tax_withheld',)),
+total_payments=cell("Total payments", 74, 'CV("federal_tax_withheld")+CV("eitc")', ('federal_tax_withheld','eitc')),
 refund=cell("Refund!", 75, 'max(CV("total_payments")-CV("total_tax"), 0)'
                          , ('total_tax', 'total_payments')),
 tax_owed=cell("Tax owed", 78, 'max(CV("total_tax")-CV("total_payments"), 0)'
