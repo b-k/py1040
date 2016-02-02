@@ -31,7 +31,7 @@ def print_a_form(name, inlist):
     print(">>>>>>>>>> %s <<<<<<<<<" %(name,))
     out=list()
     for i in inlist.keys():
-        if show_optional_zeros or cell_list[i].value != 0 or cell_list[i].flag.find('o')==-1:
+        if (show_optional_zeros or cell_list[i].value != 0 or cell_list[i].flag.find('o')==-1) and cell_list[i].line>0:
             out.append((cell_list[i].line, cell_list[i].name, cell_list[i].value))
     out.sort()
     max_len = 0

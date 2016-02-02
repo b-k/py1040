@@ -64,10 +64,8 @@ the cell's parent cells.
 
 Adding a form, then, consists of transcribing this information for each needed line. This
 is straightforward, and has proven to take only a few seconds per line.
-You will need to modify the list of parent cells in at least one already-existing cell.
+We considered using the XML schemata here:
+https://www.irs.gov/Tax-Professionals/e-File-Providers-&-Partners/Schemas-Business-Rules-and-Release-Memo-for-MeF-Form-1040-Series-Tax-Year-2015-Version-3_1
+but it turns out to be easier to just cut/paste/modify the lines from the PDF forms.
 Each form should be in one file in the `forms` directory, which has one python `dict` that
 has the same name as the file (and optionally other initializations).
-
-
-Conditionally-handled cells (like not printing mortgage expenses for people who don't own a
-house) aren't yet implemented.

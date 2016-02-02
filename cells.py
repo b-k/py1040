@@ -1,9 +1,13 @@
 cell_list = dict()
 
 class cell():
-    def __init__(self, name, line, calc='0', parents=(None), flag='c', situation=True):
-        self.name=name
-        self.line=line
+    def __init__(self, line, name, calc='0', parents=(None), flag='c', situation=True):
+        if type(line) is str: #I switched the order, but haven't yet swapped all the existing cell initializations
+            self.name=line
+            self.line=name
+        else:
+            self.name=name
+            self.line=line
         self.parents=parents
         self.calc=calc
         self.done=False

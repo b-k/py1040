@@ -61,9 +61,12 @@ taxable_ss_benefits=cell("Taxable social security benefits", 20.5,
                             flag='uo', situation='over_65 or spouse_over_65'),
 other_in=cell("Other income.", 21, flag='uo'),
 
-total_in=cell("Total income", 22, 
-"CV('wages') + CV('interest') + CV('dividends') + CV('taxable_tax_refunds') + CV('alimony') + CV('sched_c') + CV('cap_gains') +CV('taxable_ira_income') + CV('taxable_pension') + CV('rents_and_royalties') + CV('farm_income') + CV('unemployment') + CV('taxable_ss_benefits') + CV('other_in')",
+magi_total_in=cell("Total income for MAGI (PI)", 0, 
+"CV('wages') + CV('interest') + CV('dividends') + CV('taxable_tax_refunds') + CV('alimony') + CV('sched_c') + CV('cap_gains') +CV('taxable_ira_income') + CV('taxable_pension') + CV('farm_income') + CV('unemployment') + CV('taxable_ss_benefits') + CV('other_in')",
 ('wages', 'interest', 'dividends', 'taxable_tax_refunds', 'alimony', 'sched_c', 'cap_gains','taxable_ira_income', 'taxable_pension','rents_and_royalties', 'farm_income', 'unemployment', 'taxable_ss_benefits', 'other_in')),
+
+total_in=cell("Total income", 22, "CV('magi_total_in') + CV('rents_and_royalties')",
+('magi_total_in','rents_and_royalties')),
 
 agi_divider=cell('>>>>>>>>>>>> AGI                                   ', 22.9, '0'),
 
@@ -86,6 +89,8 @@ agi_divider=cell('>>>>>>>>>>>> AGI                                   ', 22.9, '0
 subtractions_from_income=cell("Sum of subtractions from gross income", 36, '0'),
 
 t_and_i_divider=cell('>>>>>>>>>>>> Taxes and income                      ', 36.9, '0'),
+MAGI=cell("Modified adjusted gross income", 0, "CV('magi_total_in') - CV('subtractions_from_income')",
+('magi_total_in', 'subtractions_from_income')), 
 AGI=cell("Adjusted gross income", 37, "CV('total_in') - CV('subtractions_from_income')",
 ('total_in', 'subtractions_from_income')),
 agi_again=cell("Adjusted gross income, again", 38, "CV('AGI')", ('AGI',)),
