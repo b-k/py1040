@@ -65,8 +65,9 @@ the cell's parent cells.
 Adding a form, then, consists of transcribing this information for each needed line. This
 is straightforward, and has proven to take only a few seconds per line.
 You will need to modify the list of parent cells in at least one already-existing cell.
-Then, add a line to `taxes.py` to read in your form (you'll find the other form read-ins
-to copy/paste/modify).
+Each form should be in one file in the `forms` directory, which has one python `dict` that
+has the same name as the file (and optionally other initializations).
+
 
 Conditionally-handled cells (like not printing mortgage expenses for people who don't own a
 house) aren't yet implemented.
