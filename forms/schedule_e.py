@@ -41,7 +41,7 @@ CV('sched_e_utilities') + CV('sched_e_depreciation') + CV('sched_e_other_expense
 net_rr=cell("Rents/royalties minus expenses", 21, "CV('rents_received') + CV('royalties_received')-CV('sched_e_total_expenses')",
 ('rents_received', 'royalties_received', 'sched_e_total_expenses')),
 
-deductible_rr_losses=cell("Deductible rental real estate loss after (unimplemented) limitation", 22, 'min(CV("net_rr"), 0)',('net_rr',)),
+deductible_rr_losses=cell(22, "Deductible rental real estate loss after limitation", 'CV("total_losses_8582")',('net_rr','total_losses_8582')),
 
 sched_e_sum3=cell("Total for line 3 for all rentals", 23.0, "sum(CV('rents_received'))", ('rents_received',)),
 sched_e_sum4=cell("Total for line 4 for all royaltys", 23.2, "sum(CV('royalties_received'))", ('royalties_received',)),
