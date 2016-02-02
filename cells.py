@@ -26,6 +26,7 @@ class cell():
         return True
 
     def compute(self):
+        if debug: print ("Checking "+self.name)
         if self.done: return self.value
 
         if (self.parents != None):

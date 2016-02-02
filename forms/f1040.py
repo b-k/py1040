@@ -63,7 +63,7 @@ other_in=cell("Other income.", 21, flag='uo'),
 
 magi_total_in=cell("Total income for MAGI (PI)", 0, 
 "CV('wages') + CV('interest') + CV('dividends') + CV('taxable_tax_refunds') + CV('alimony') + CV('sched_c') + CV('cap_gains') +CV('taxable_ira_income') + CV('taxable_pension') + CV('farm_income') + CV('unemployment') + CV('taxable_ss_benefits') + CV('other_in')",
-('wages', 'interest', 'dividends', 'taxable_tax_refunds', 'alimony', 'sched_c', 'cap_gains','taxable_ira_income', 'taxable_pension','rents_and_royalties', 'farm_income', 'unemployment', 'taxable_ss_benefits', 'other_in')),
+('wages', 'interest', 'dividends', 'taxable_tax_refunds', 'alimony', 'sched_c', 'cap_gains','taxable_ira_income', 'taxable_pension', 'farm_income', 'unemployment', 'taxable_ss_benefits', 'other_in')),
 
 total_in=cell("Total income", 22, "CV('magi_total_in') + CV('rents_and_royalties')",
 ('magi_total_in','rents_and_royalties')),
