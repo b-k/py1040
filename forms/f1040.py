@@ -105,10 +105,10 @@ taxable_income=cell("Taxable income", 43,
 	'max(CV("agi_minus_deductions")-CV("exemption_amount"), 0)',
 	('agi_minus_deductions', 'exemption_amount')),
 tax=cell("Tax", 44, 'tax_calc(CV("taxable_income"))', ('taxable_income',)),
-#45 Alternative minimum tax (see instructions). Attach Form 6251 . . . . . . . . . 45
-#46 Excess advance premium tax credit repayment. Attach Form 8962 . . . . . . . . 46
-pretotal_tax=cell("Tax + AMT + F8962", 47, 'CV("tax")', ('tax',)),
-#48 Foreign tax credit. Attach Form 1116 if required . . . . 48
+amt_1040=cell(45, "Alternative minimum tax from Form 6251", "CV('amt')", ('amt',)),
+credit_repayment=cell(46, "Excess advance premium tax credit repayment. (UI)", '0'),
+pretotal_tax=cell("Tax + AMT + F8962", 47, 'CV("tax") + CV("amt_1040") + CV("credit_repayment")', ('tax','amt','credit_repayment')),
+ftc=cell(48, "Foreign tax credit (UI)", '0'),
 #49 Credit for child and dependent care expenses. Attach Form 2441 49
 #50 Education credits from Form 8863, line 19 . . . . . 50
 #51 Retirement savings contributions credit. Attach Form 8880 51
