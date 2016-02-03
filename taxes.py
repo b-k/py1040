@@ -40,14 +40,24 @@ def print_a_form(name, inlist):
     for i in out:
     	print("%4g | %*s | %g" %( i[0], max_len, i[1], i[2]))
 
+def clear_done_flags(start):
+    cell_list[start].done=False
+    parents = cell_list[start].parents
+    if (parents != None):
+        for i in parents:
+            clear_done_flags(i)
+
 def print_the_tree(starting_cell, level=0):
+    if level==0:
+        clear_done_flags(starting_cell)
     print("%s├ %s=%g" % ("│   "*level, starting_cell, CV(starting_cell)))
     parents = cell_list[starting_cell].parents
     if (parents != None):
         print("%s├───┐" % ("│   "*level))
         for i in parents:
-            if (cell_list[i].situation):
+            if (cell_list[i].situation and not cell_list[i].done):
                 print_the_tree(i, level+1)
+                cell_list[i].done=True
 
 def print_to_graphviz(starting_cell, f, level=0):
     parents = cell_list[starting_cell].parents
