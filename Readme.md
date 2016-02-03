@@ -34,27 +34,6 @@ financial situation gives you the freedom to act on what-if scenarios, or if you
 a tax researcher considering the situations of diverse taxpayers, the structures here
 are hopefully more amenable to your needs.
 
-
-### Can I trust it?
-
-At the moment, it's a version-zero draft for discussion; see below about helping to
-get it more functional. It seems like we could get it to work well for most tax situations
-without too much further effort.
-
-This program is not a tax tutor or advisor; there are many, many other sources that can
-help you optimize your tax situation. This is just a calculator. Because it's very
-incomplete right now, many tax situations are handled with zeros.
-
-Please note this section from the license, which the license authors felt was important
-enough to put in all-caps:
-
-> THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.
-> EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
-> PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED,
-> INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-> FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE
-> PROGRAM IS WITH YOU.
-
 ### Contributing
 
 Each form is represented as a file holding a dictionary of cells, where each cell
@@ -69,3 +48,33 @@ https://www.irs.gov/Tax-Professionals/e-File-Providers-&-Partners/Schemas-Busine
 but it turns out to be easier to just cut/paste/modify the lines from the PDF forms.
 Each form should be in one file in the `forms` directory, which has one python `dict` that
 has the same name as the file (and optionally other initializations).
+
+On the features-wanted list: a web-friendly front-end and better visualizations (say, the graph
+with cells sized by their dollar value, so a viewer could immediately trace where the
+bulk of income or expenses comes from).
+
+
+### Caveats
+
+This program is not a tax tutor or advisor; there are many other sources that can
+help you optimize your tax situation. This is just a calculator.
+
+There are many elements of the system that are not yet implemented. I (BK) am not
+self-employed and don't have a farm, so I have not implemented Schedules C or F.
+As above, contributing a new form or worksheet is not a massive effort, and if a few more
+people contribute their situations, we may begin to have a reasonably complete and
+accurate tax calculator. Until then, please bear in mind that you should verify every
+calculation done here.
+
+Please note this section from the license, which the license authors felt was important
+enough to put in all-caps:
+
+> THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.
+> EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
+> PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED,
+> INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+> FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE
+> PROGRAM IS WITH YOU.
+
+This version was written by BK over the course of a weekend at home, and is therefore not
+endoresed by or otherwise related to his employer.
