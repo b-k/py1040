@@ -33,5 +33,5 @@ allowed_real_losses=cell(10, "Allowed real estate losses",
 
 div_8582=cell(">>>>Total ", 14.9),
 total_gains_8582=cell(15, "Total (UI)", '0'),
-total_losses_8582=cell(16, "Total loss", "CV('allowed_real_losses')+CV('total_gains_8582')", ('allowed_real_losses', 'total_gains_8582'))
+total_losses_8582=cell(16, "Total loss", "min(CV('allowed_real_losses')+CV('total_gains_8582'), 0)", ('allowed_real_losses', 'total_gains_8582'))
 )

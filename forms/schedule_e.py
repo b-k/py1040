@@ -7,7 +7,8 @@ def rrlosses(rents, royalties, net, real_loss):
             if real_loss[i]<0: total = total + real_loss[i]
     else:
         if rents > 0: return real_loss
-        else:         return net
+        elif net <0:         return net
+    return 0
 
 schedule_e=dict(
 rents_received=cell("Rents received [may be an array]", 3, flag='u'),

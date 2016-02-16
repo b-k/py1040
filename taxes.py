@@ -111,8 +111,8 @@ if have_rr:
     print_a_form("Schedule E", schedule_e)
     print_a_form("Form 8582", f8582)
 
-print("\n")
-print_the_tree('refund')
+#print("\n")
+#print_the_tree('refund')
 f=open("graph.dot", "w")
 #f.write("digraph {")
 print_to_graphviz('refund', f)
