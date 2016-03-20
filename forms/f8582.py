@@ -22,16 +22,17 @@ f8582_passive_activities=cell(3, "Passive activity income (UI)", '0'),
 f8582_total_in=cell(4, "Total in",  "CV('f8582_total_real_in') + CV('f8582_commercial_revitalization') + CV('f8582_passive_activities')", ('f8582_total_real_in', 'f8582_commercial_revitalization', 'f8582_passive_activities')),
 
 f8582_min = cell(5, "the smaller of the loss on line 1d or the loss on line 4",
-    "min(CV('f8582_total_real_in'), CV('f8582_total_in'))", ('f8582_total_real_in', 'f8582_total_in')),
+    "max(min(0, CV('f8582_total_real_in')), min(0, CV('f8582_total_in')))", ('f8582_total_real_in', 'f8582_total_in')),
 f8582_150k = cell(6, "150k", '150000'),
 f8582_magi_again=cell(7, "MAGI if positive", "max(CV('MAGI'), 0)", ('MAGI',)),
 
-f8582_diff=cell(8, "Line 6 - Line 7", 'max(CV("f8582_magi_again")- CV("f8582_150k"), 0)', ("f8582_magi_again", "f8582_150k")),
+f8582_diff=cell(8, "Line 6 - Line 7", 'max(CV("f8582_150k") - CV("f8582_magi_again"), 0)', ("f8582_magi_again", "f8582_150k")),
 f8582_half=cell(9, "Half of line 8, up to 25k", 'min(25000, CV("f8582_diff")/2.)', ('f8582_diff',)),
 allowed_real_losses=cell(10, "Allowed real estate losses",
     "what_is_allowed(CV('f8582_min'), CV('f8582_half'))", ('f8582_min', 'f8582_half')),
 
 div_8582=cell(">>>>Total ", 14.9),
 total_gains_8582=cell(15, "Total (UI)", '0'),
-total_losses_8582=cell(16, "Total loss", "min(CV('allowed_real_losses')+CV('total_gains_8582'), 0)", ('allowed_real_losses', 'total_gains_8582'))
+total_losses_8582=cell(16, "Total loss", "min(-CV('allowed_real_losses')+CV('total_gains_8582'), 0)", ('allowed_real_losses', 'total_gains_8582'))
+#total_losses_8582=cell(16, "Total loss", "min(CV('allowed_real_losses')+CV('total_gains_8582'), 0)", ('allowed_real_losses', 'total_gains_8582'))
 )

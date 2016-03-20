@@ -1,2 +1,3 @@
 #After running taxes.py, use this one-line shell script to have graphviz generate a flowchart.
-sort graph.dot | uniq | sed -e '1idigraph{rankdir="LR"; ' -e '$a}' | dot -Tpng > graph.png
+sed 's/\[[^]]*\]//g' graph.dot|sort | uniq | cat <(sed 's/->.*//' graph.dot|sort|uniq) - | sed -e '1idigraph{rankdir="LR"; ' -e '$a}' | dot -Tpng > graph.png
+#sort graph.dot | uniq | sed -e '1idigraph{rankdir="LR"; ' -e '$a}' | dot -Tpng > graph.png

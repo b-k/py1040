@@ -107,7 +107,7 @@ taxable_income=cell("Taxable income", 43,
 tax=cell("Tax", 44, 'tax_calc(CV("taxable_income"))', ('taxable_income',)),
 amt_1040=cell(45, "Alternative minimum tax from Form 6251", "CV('amt')", ('amt',)),
 credit_repayment=cell(46, "Excess advance premium tax credit repayment. (UI)", '0'),
-pretotal_tax=cell("Tax + AMT + F8962", 47, 'CV("tax") + CV("amt_1040") + CV("credit_repayment")', ('tax','amt','credit_repayment')),
+pretotal_tax=cell("Tax + AMT + F8962", 47, 'CV("tax") + CV("amt_1040") + CV("credit_repayment")', ('tax','amt_1040','credit_repayment')),
 ftc=cell(48, "Foreign tax credit (UI)", '0'),
 #49 Credit for child and dependent care expenses. Attach Form 2441 49
 #50 Education credits from Form 8863, line 19 . . . . . 50

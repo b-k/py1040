@@ -59,12 +59,20 @@ def print_the_tree(starting_cell, level=0):
                 print_the_tree(i, level+1)
                 cell_list[i].done=True
 
-def print_to_graphviz(starting_cell, f, level=0):
+def get_maxcell(starting_cell, maxsofar=0, level=0):
+    maxsofar = max(maxsofar, cell_list[starting_cell].value)
     parents = cell_list[starting_cell].parents
     if (parents != None):
         for i in parents:
-            f.write("%s -> %s\n" % (i, starting_cell))
-            print_to_graphviz(i, f, level+1)
+            maxsofar = max(maxsofar, get_maxcell(i, maxsofar, level+1))
+    return maxsofar
+
+def print_to_graphviz(starting_cell, f, maxval, level=0):
+    parents = cell_list[starting_cell].parents
+    if (parents != None):
+        for i in parents:
+            f.write("%s [height=%g] -> %s [height=%g]\n" % (i, 72*cell_list[i].value/maxval, starting_cell, 72*cell_list[starting_cell].value/maxval))
+            print_to_graphviz(i, f, maxval, level+1)
 
 # The main routine: build interview and inform, calculate taxes, print
 
@@ -115,6 +123,8 @@ if have_rr:
 #print_the_tree('refund')
 f=open("graph.dot", "w")
 #f.write("digraph {")
-print_to_graphviz('refund', f)
+maxval=get_maxcell('refund')
+print("MAXVAL: %g" %(maxval,))
+print_to_graphviz('refund', f, maxval)
 #f.write("}")
 f.close()
