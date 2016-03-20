@@ -1,4 +1,4 @@
-cell_list = dict()
+#cell_list = dict()
 
 class cell():
     def __init__(self, line, name, calc='0', parents=(None), flag='c', situation=True):
