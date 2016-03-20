@@ -1,14 +1,8 @@
-#cell_list = dict()
-
 class cell():
-    def __init__(self, line, name, calc='0', parents=(None), flag='c', situation=True):
-        if type(line) is str: #I switched the order, but haven't yet swapped all the existing cell initializations
-            self.name=line
-            self.line=name
-        else:
-            self.name=name
-            self.line=line
-        self.parents=parents
+    def __init__(self, text, line, calc='0', flag='c', situation=True, name='x'):
+        self.text=text
+        self.line=line
+        self.name=name
         self.calc=calc
         self.done=False
         self.value=0
@@ -20,8 +14,10 @@ class cell():
         if (self.situation == False): return True
         out = self.done
         if (not out): return False
-        if (self.parents != None):
-            for i in self.parents:
+        parents = deps[self.name]
+        if (parents != None):
+            for i in parents:
+                if (i==""): continue
                 if (not cell_list[i].check_done()): return False
         return True
 
@@ -29,13 +25,16 @@ class cell():
         if debug: print ("Checking "+self.name)
         if self.done: return self.value
 
-        if (self.parents != None):
-            for i in self.parents:
+        parents = deps[self.name]
+        if (parents != None):
+            for i in parents:
+                if (i==""): continue
                 cell_list[i].compute()
-            for i in self.parents:
+            for i in parents:
+                if (i==""): continue
                 if (not cell_list[i].check_done()):
                     print("Missing dependency for", self.name, "; need", cell_list[i].name)
                     return False
-        if debug: print ("Computing "+self.name)
+        if debug: print ("Computing "+self.name + ":" +self.calc)
         self.value = eval(self.calc)
         self.done=True

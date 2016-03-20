@@ -22,7 +22,7 @@ def setup_inform(print_out):
 """
 #%s
 %s = 0
-""" % (i[1].name, i[0]))
+""" % (i[1].text, i[0]))
     f.close
 
 
@@ -34,7 +34,7 @@ def print_a_form(title, fname):
         if (i.find(fname)!=0):
             continue
         if (show_optional_zeros or cell_list[i].value != 0 or cell_list[i].flag.find('o')==-1) and cell_list[i].line>0:
-            out.append((cell_list[i].line, cell_list[i].name, cell_list[i].value))
+            out.append((cell_list[i].line, cell_list[i].text, cell_list[i].value))
     out.sort()
     max_len = 0
     for i in out:
@@ -76,7 +76,6 @@ def print_to_graphviz(starting_cell, f, level=0):
             f.write("%s  -> %s \n" % (i, starting_cell))
             print_to_graphviz(i, f, maxval, level+1)
 
-# The main routine: build interview and inform, calculate taxes, print
 
 # The main routine: build interview and inform, calculate taxes, print
 status="no interview yet"
