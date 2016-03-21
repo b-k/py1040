@@ -70,11 +70,11 @@ def get_maxcell(starting_cell, maxsofar=0, level=0):
     return maxsofar
 
 def print_to_graphviz(starting_cell, f, level=0):
-    parents = cell_list[starting_cell].parents
+    parents = deps[starting_cell]
     if (parents != None):
         for i in parents:
             f.write("%s  -> %s \n" % (i, starting_cell))
-            print_to_graphviz(i, f, maxval, level+1)
+            print_to_graphviz(i, f, level+1)
 
 
 # The main routine: build interview and inform, calculate taxes, print
@@ -117,12 +117,13 @@ setup_inform(print_out=False)
 
 cell_list['f1040_refund'].compute()
 cell_list['f1040_tax_owed'].compute()
-print_a_form("Form 1040", "f1040")
+cell_list['f8582_carryover_to_next_year'].compute()
 if itemizing:
     print_a_form("Schedule A", "f1040_sched_a")
 if have_rr:
     print_a_form("Schedule E", "f1040_sched_e")
     print_a_form("Form 8582", "f8582")
+print_a_form("Form 1040", "f1040")
 
 #print("\n")
 #print_the_tree('refund')
