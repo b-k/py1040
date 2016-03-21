@@ -1,7 +1,7 @@
 py1040
 ======
 
-This is a tax calculator for one individual U.S. tax return---Internal Revenue Service form 1040.
+This is a tax calculator for one individual U.S. tax return---Internal Revenue Service form 1040 (2015).
 
 ### Quick start
 
