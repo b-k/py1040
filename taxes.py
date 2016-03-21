@@ -15,15 +15,14 @@ def setup_inform(print_out):
                 i[1].calc="%s" %(i[0],)
         return
 
-    f = open("inform.py", "w")
-    for i in cell_list.items():
-        if (i[1].flag.find('u')>-1):
-            f.write(
+    with open("inform.py", "w") as f:
+        for i in cell_list.items():
+            if (i[1].flag.find('u')>-1):
+                f.write(
 """
 #%s
 %s = 0
 """ % (i[1].name, i[0]))
-    f.close
 
 
 
