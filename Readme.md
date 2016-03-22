@@ -5,7 +5,10 @@ This is a tax calculator for one individual U.S. tax return---Internal Revenue S
 
 ### Quick start
 
-1. Run `python3 taxes.py`. It will generate a file named `interview.py`.
+0. Build it, via `make`. This will pull a copy of 1040.js [ See
+   `https://b-k.github.io/1040.js` for the attractive front end], and generate
+   Python versions of the forms.
+1. Run `python3 taxes.py`, which will generate a file named `interview.py`.
 2. Open `interview.py` in your text editor, and follow the instructions to provide
    information about your tax situation.
 3. Run `python3 taxes.py` again. It will generate `inform.py`.
