@@ -3,7 +3,8 @@ py1040
 
 This is a tax calculator for one individual U.S. tax return---Internal Revenue Service form 1040 (2015).
 
-![basic output from the program](https://pbs.twimg.com/media/Cd7J1GlUIAAYb1I.jpg)
+
+Image via: https://twitter.com/konklone/status/711227705996550145
 
 ### Quick start
 
