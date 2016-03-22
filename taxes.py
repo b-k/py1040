@@ -30,7 +30,7 @@ def print_a_form(title, fname):
     print(">>>>>>>>>> %s <<<<<<<<<" %(title,))
     out=list()
     for i in cell_list.keys():
-        if (i.find(fname)!=0):
+        if (cell_list[i].form!=fname):
             continue
         if (show_optional_zeros or cell_list[i].value != 0 or cell_list[i].flag.find('o')==-1) and cell_list[i].line>0:
             out.append((cell_list[i].line, cell_list[i].text, cell_list[i].value))

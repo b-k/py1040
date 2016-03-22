@@ -1,5 +1,5 @@
 class cell():
-    def __init__(self, text, line, calc='0', flag='c', situation=True, name='x'):
+    def __init__(self, text, line, calc='0', flag='c', situation=True, name='x', form='1040'):
         self.text=text
         self.line=line
         self.name=name
@@ -8,6 +8,7 @@ class cell():
         self.value=0
         self.flag=flag
         self.situation=situation
+        self.form=form
 
     def check_done(self):
         #print("checking", self.name)
