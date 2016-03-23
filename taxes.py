@@ -75,6 +75,22 @@ def print_to_graphviz(starting_cell, f, level=0):
             f.write("%s  -> %s \n" % (i, starting_cell))
             print_to_graphviz(i, f, level+1)
 
+def charitable():
+    """A sample what-if scenario"""
+    for i in cell_list.keys():
+        cell_list[i].done=False
+    current = -cell_list['f1040_refund'].value + cell_list['f1040_tax_owed'].value
+
+    global f1040_sched_a_charity_cash
+    f1040_sched_a_charity_cash= f1040_sched_a_charity_cash+ 100
+
+    cell_list['f1040_refund'].compute()
+    cell_list['f1040_tax_owed'].compute()
+
+    new = -cell_list['f1040_refund'].value + cell_list['f1040_tax_owed'].value
+    print("If you gave another $100 to charity, your taxes would fall by $%g" % (current-new,))
+
+
 
 # The main routine: build interview and inform, calculate taxes, print
 status="no interview yet"
@@ -114,6 +130,14 @@ if (not pathlib.Path("inform.py").exists()):
 from inform import *
 setup_inform(print_out=False)
 
+
+
+
+
+
+
+
+
 cell_list['f1040_refund'].compute()
 cell_list['f1040_tax_owed'].compute()
 cell_list['f8582_carryover_to_next_year'].compute()
@@ -131,3 +155,6 @@ f.write("digraph {")
 print_to_graphviz('f1040_refund', f)
 f.write("}")
 f.close()
+
+if itemizing:
+    charitable()
