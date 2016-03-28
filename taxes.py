@@ -48,18 +48,6 @@ def clear_done_flags(start):
         for i in parents:
             clear_done_flags(i)
 
-def print_the_tree(starting_cell, level=0):
-    if level==0:
-        clear_done_flags(starting_cell)
-    print("%s├ %s=%g" % ("│   "*level, starting_cell, Cv(starting_cell)))
-    parents = cell_list[starting_cell].parents
-    if (parents != None):
-        print("%s├───┐" % ("│   "*level))
-        for i in parents:
-            if (cell_list[i].situation and not cell_list[i].done):
-                print_the_tree(i, level+1)
-                cell_list[i].done=True
-
 def get_maxcell(starting_cell, maxsofar=0, level=0):
     maxsofar = max(maxsofar, cell_list[starting_cell].value)
     parents = cell_list[starting_cell].parents
@@ -148,8 +136,7 @@ if have_rr:
     print_a_form("Form 8582", "f8582")
 print_a_form("Form 1040", "f1040")
 
-#print("\n")
-#print_the_tree('refund')
+
 f=open("graph.dot", "w")
 f.write("digraph {")
 print_to_graphviz('f1040_refund', f)
