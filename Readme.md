@@ -83,4 +83,4 @@ enough to put in all-caps:
 > PROGRAM IS WITH YOU.
 
 This version was written by BK over the course of a weekend at home, and is therefore not
-endoresed by or otherwise related to his employer.
+endorsed by or otherwise related to his employer.
