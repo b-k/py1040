@@ -38,7 +38,7 @@ charity_total=cell("Gifts to charity, total", 19, 'CV("charity_cash")+ CV("chari
 
 casualty_or_theft_losses=cell("Casualty and Theft Losses", 20, flag='uo'),
 
-employee_expenses=cell("Unreimbursed employee expenses—job travel, union dues, job education, etc.", 21, flag='uo'),
+employee_expenses=cell("Unreimbursed employee expenses-job travel, union dues, job education, etc.", 21, flag='uo'),
 tax_prep_fees=cell("Tax prep fees", 22, flag='uo'),
 other_work_expenses=cell("Other expenses—investment, safe deposit box, etc.", 23, flag='uo'),
 
