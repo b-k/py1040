@@ -21,7 +21,7 @@ have_rr=False
 # How many dependent children do you have?
 kids=0
 
-# How many dependents do you have?
+# How many dependents over 17 do you have?
 dependents=0
 
 ### py1040 options
