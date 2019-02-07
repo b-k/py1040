@@ -40,6 +40,7 @@ def print_a_form(title, fname):
     	max_len = max(max_len, len(i[1]))
     for i in out:
     	print("%4g | %*s | %g" %( i[0], max_len, i[1], i[2]))
+    print("")
 
 def clear_done_flags(start):
     cell_list[start].done=False
@@ -129,12 +130,26 @@ setup_inform(print_out=False)
 cell_list['f1040_refund'].compute()
 cell_list['f1040_tax_owed'].compute()
 cell_list['f8582_carryover_to_next_year'].compute()
+print_a_form("Form 1040", "f1040")
+print_a_form("Schedule 1", "f1040sch1")
+print_a_form("Schedule 2", "f1040sch2")
+print_a_form("Schedule 3", "f1040sch3")
+print_a_form("Schedule 4", "f1040sch4")
 if itemizing:
     print_a_form("Schedule A", "f1040_sched_a")
+    print_a_form("f6251: AMT", "f6251")
+if kids:
+    print_a_form("Schedule 8812, Child Tax Credit", "ctc_sch8812")
+    print_a_form("CTC worksheet", "ctc_ws_1040")
 if have_rr:
     print_a_form("Schedule E", "f1040_sched_e")
     print_a_form("Form 8582", "f8582")
-print_a_form("Form 1040", "f1040")
+    print_a_form("Form 4562", "f4562")
+if s_loans:
+    print_a_form("Form 8863: Education credits", "f8863")
+    print_a_form("Form 8863ws", "f8863ws")
+    print_a_form("Student loan worksheet", "student_loan_ws_1040")
+
 
 
 f=open("graph.dot", "w")

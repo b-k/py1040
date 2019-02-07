@@ -24,6 +24,9 @@ kids=0
 # How many dependents over 17 do you have?
 dependents=0
 
+# Do you have student loans or education expenses
+s_loans=False
+
 ### py1040 options
 
 # Should I print out fields that you left at zero and can be left blank when
