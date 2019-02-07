@@ -92,9 +92,12 @@ if (not pathlib.Path("interview.py").exists()):
     sys.exit(1)
 
 exec(open("interview.py").read())
-if (status=="no interview yet"):
+if status=="no interview yet":
     print("Please follow the steps in interview.py and rerun this script.")
     sys.exit(1)
+if status=="single" and kids+dependents > 0:
+    print("Changing Single with dependents to Head of Household.")
+    status="head of household"
 
 from interview import *
 
