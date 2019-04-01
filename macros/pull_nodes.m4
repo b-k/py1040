@@ -25,3 +25,7 @@ Print(<|
 cell_list = dict(
 |>)
 
+
+Everything else got written to diversion 1; write the final end paren to 2
+m4_divert(2) )
+m4_divert(-1)

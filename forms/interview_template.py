@@ -27,6 +27,9 @@ dependents=0
 # Do you have student loans or education expenses
 s_loans=False
 
+# Do you have long-term capital gains or dividends qualified to use the ltgc rate?
+cap_gains=False
+
 ### py1040 options
 
 # Should I print out fields that you left at zero and can be left blank when
