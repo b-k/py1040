@@ -137,7 +137,6 @@ print_a_form("Form 1040", "f1040")
 print_a_form("Schedule 1", "f1040sch1")
 print_a_form("Schedule 2", "f1040sch2")
 print_a_form("Schedule 3", "f1040sch3")
-print_a_form("Schedule 4", "f1040sch4")
 if itemizing:
     print_a_form("Schedule A", "f1040_sched_a")
     print_a_form("f6251: AMT", "f6251")
@@ -152,6 +151,8 @@ if s_loans:
     print_a_form("Form 8863: Education credits", "f8863")
     print_a_form("Form 8863ws", "f8863ws")
     print_a_form("Student loan worksheet", "student_loan_ws_1040")
+if cap_gains:
+    print_a_form("Qualified dividends worksheet", "qualified_dividends_ws")
 
 
 

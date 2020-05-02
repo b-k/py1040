@@ -23,8 +23,10 @@ class cell():
         return True
 
     def compute(self):
-        if debug: print ("Checking "+self.name)
-        if self.done: return self.value
+        if debug: print ("Checking "+self.name, flush=True)
+        if self.done:
+            if debug: print ("  Got "+str(self.value), flush=True)
+            return self.value
 
         parents = deps[self.name]
         if (parents != None):
@@ -34,8 +36,9 @@ class cell():
             for i in parents:
                 if (i==""): continue
                 if (not cell_list[i].check_done()):
-                    print("Missing dependency for", self.name, "; need", cell_list[i].name)
+                    print("Missing dependency for\t", self.name, "; need", cell_list[i].name)
                     return False
-        if debug: print ("Computing "+self.name + ":" +self.calc)
+        if debug: print ("Computing\t" + self.name + ":\t" +self.calc, flush=True)
         self.value = eval(self.calc)
+        if debug: print ("  For ", self.name, " got:\t", str(self.value), flush=True)
         self.done=True

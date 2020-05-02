@@ -43,7 +43,8 @@ has the same name as the file (and optionally other initializations).
 ### Caveats
 
 This program is not a tax tutor or advisor; there are many other sources that can
-help you optimize your tax situation. This is just a calculator.
+help you optimize your tax situation. This is just a calculator, that may be useful in
+the process.
 
 There are many elements of the system that are not yet implemented. I (BK) am not
 self-employed and don't have a farm, so I have not implemented Schedules C or F.
@@ -62,5 +63,5 @@ enough to put in all-caps:
 > FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE
 > PROGRAM IS WITH YOU.
 
-This version was written by BK over the course of a weekend at home, and is therefore not
+This version was first written by BK over the course of a weekend at home, and is therefore not
 endorsed by or otherwise related to his employer.
