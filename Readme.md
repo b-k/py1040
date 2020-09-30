@@ -1,4 +1,4 @@
-py1040
+TAX CALCULATOR PROJECT
 ======
 
 This is a tax calculator for one individual U.S. tax return---Internal Revenue Service form 1040 (2015).
