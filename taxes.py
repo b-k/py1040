@@ -89,7 +89,7 @@ from shutil import copyfile
 if (not pathlib.Path("interview.py").exists()):
     copyfile("forms/interview_template.py", "interview.py")
     print("Have generated interview.py. Please fill it in and rerun this script.")
-    sys.exit(1)
+    sys.exit(0)
 
 exec(open("interview.py").read())
 if status=="no interview yet":
@@ -117,7 +117,7 @@ for f in os.listdir('forms'):
 if (not pathlib.Path("inform.py").exists()):
     setup_inform(print_out=True)
     print("Have generated inform.py. Please fill it in and rerun this script.")
-    sys.exit(1)
+    sys.exit(0)
 
 from inform import *
 setup_inform(print_out=False)
