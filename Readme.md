@@ -1,17 +1,20 @@
 py1040
 ======
 
-This is a tax calculator for one individual U.S. tax return—Internal Revenue Service form 1040 (2015).
+This is a tax calculator for one individual U.S. tax return—Internal Revenue Service form 1040.
 
 
 First, you will take a short interview:
-![An interview form, actually a standard Python file with assignments like `status="married"` and `over_65=False`](interview.png)
+
+<img alt='An interview form, actually a standard Python file with assignments like `status="married"` and `over_65=False`' src="interview.png" width =50%>
 
 This will generate a personalized list of inputs for you to provide:
-![Another standard Python file with lines for variables with names like `1040_wages` and `f1040_interest`. Lines are documented with comments.](input_form.png)
+
+<img alt='Another standard Python file with lines for variables with names like `1040_wages` and `f1040_interest`. Lines are documented with comments.' src="input_form.png" width=50%>
 
 From those, you will get output that roughly follows the tax forms:
-![Output, headed "Form 1040". Each line has a line number from the IRS form, a title like `taxable interest` and `tax minus credits`.](final_form.png)
+
+<img alt='Output, headed "Form 1040". Each line has a line number from the IRS form, a title like `taxable interest` and `tax minus credits`' src="final_form.png" width=50%>
 
 ### Quick start
 
