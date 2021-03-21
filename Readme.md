@@ -34,11 +34,11 @@ From those, you will get output that roughly follows the tax forms:
 
 This program is not a tax tutor or advisor; there are many other sources that can
 help you optimize your tax situation. This is just a calculator, that may be useful in
-the process.
+the process. For example, double-checking the work of another tax system using py1040
+may reveal mistakes or even tax opportunities.
 
 There are many elements of the system that are not yet implemented. The lead author is not
 self-employed and doesn't have a farm, so Schedules C and F are not implemented.
-As discussed below, contributing a new form or worksheet is not a massive effort, and if a few more people contribute their situations, we may begin to have a reasonably complete and accurate tax calculator. Until then, please bear in mind that you should verify every calculation done here.
 
 Please note this section from the license, which the license authors felt was important
 enough to put in all-caps:
@@ -56,11 +56,10 @@ represents a line of the tax code. The cell includes the text to print, the line
 the calculation to do, whether the cell needs to be part of `inform.py`, and the list of
 the cell's parent cells. That dictionary is at https://github.com/b-k/1040.js , in a
 relatively language-independent format that both the Javascript and Python version parse
-into functions.
+into functions. [https://github.com/b-k/1040.js/blob/master/Contributing.md] covers all the details.
 
 Adding a form, then, consists of transcribing this information for each needed line. This
 is straightforward, and has proven to take only a few seconds per line.
 We considered using the XML schemata here:
 https://www.irs.gov/Tax-Professionals/e-File-Providers-&-Partners/Schemas-Business-Rules-and-Release-Memo-for-MeF-Form-1040-Series-Tax-Year-2015-Version-3_1
 but it turns out to be easier to just cut/paste/modify the lines from the PDF forms.
-Each form should be in one file in the `forms` directory, which has one python `dict` that has the same name as the file (and optionally other initializations).
