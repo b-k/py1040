@@ -87,7 +87,7 @@ status="no interview yet"
 import pathlib, sys
 from shutil import copyfile
 if (not pathlib.Path("interview.py").exists()):
-    copyfile("forms/interview_template.py", "interview.py")
+    copyfile("interview_template.py", "interview.py")
     print("Have generated interview.py. Please fill it in and rerun this script.")
     sys.exit(0)
 
@@ -105,15 +105,6 @@ import os
 import pdb
 exec(open("taxforms.py").read())
 
-"""
-for f in os.listdir('forms'):
-    #pdb.set_trace()
-    fsplit=f.partition('.')
-    if f=='interview_template.py' or fsplit[2]!="py": continue
-    exec(open("forms/"+f).read())
-    add_a_form(fsplit[0])
-    """
-
 if (not pathlib.Path("inform.py").exists()):
     setup_inform(print_out=True)
     print("Have generated inform.py. Please fill it in and rerun this script.")
@@ -121,12 +112,6 @@ if (not pathlib.Path("inform.py").exists()):
 
 from inform import *
 setup_inform(print_out=False)
-
-
-
-
-
-
 
 
 
