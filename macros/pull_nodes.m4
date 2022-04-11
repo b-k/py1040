@@ -7,8 +7,10 @@ m4_define(<|strip|>, <|m4_translit($1, <|
 m4_define(Print,<|m4_divert(1)$1<||>m4_divert(-1)|>)
 
 m4_define(<|m4_form|>, <|m4_define(<|m4form|>,$1)|>)
+m4_define(<|rm_newlines|>, <|m4_patsubst($1,<|
+|>)|>)
 
-m4_define(<|Cell|>, <|Print(<|m4form<||>_$1 = cell("$3", $2, "$4", flag="$5", name="m4form<||>_$1", form="m4form"),
+m4_define(<|Cell|>, <|Print(<|m4form<||>_$1 = cell("$3", rm_newlines($2), "rm_newlines($4)", flag="rm_newlines($5)", name="m4form<||>_$1", form="m4form"),
 |>)|>)
 m4_define(<|CV|>, <|Cv('strip(m4_ifelse(<|$#|>,1,m4form,$1))_<||>strip(m4_ifelse(<|$#|>,1,$1,$2))')|>)
 m4_define(<|SUM|>, <|$@, |>)
