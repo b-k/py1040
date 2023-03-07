@@ -3,7 +3,7 @@
 #describes your filing status this year.
 
 #status="single"
-#status="married"
+#status="married filing separately"
 #status="married filing jointly"
 #status="head of household"
                                  
