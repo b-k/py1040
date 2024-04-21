@@ -128,6 +128,9 @@ if itemizing:
 if kids:
     print_a_form("Schedule 8812, Child Tax Credit", "ctc_sch8812")
     print_a_form("CTC worksheet", "ctc_ws_1040")
+if self_emp:
+    print_a_form("Schedule C (self-employment income)", "f1040_sched_c")
+    print_a_form("Schedule SE (self-employment tax)", "sched_se")
 if have_rr:
     print_a_form("Schedule E", "f1040_sched_e")
     print_a_form("Form 8582", "f8582")

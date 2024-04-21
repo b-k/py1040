@@ -15,9 +15,6 @@ itemizing=False
 over_65=False
 spouse_over_65=False
 
-# Did you receive rents or royalties?
-have_rr=False
-
 # How many dependent children do you have?
 kids=0
 
@@ -29,6 +26,12 @@ s_loans=False
 
 # Do you have long-term capital gains or dividends qualified to use the ltgc rate?
 cap_gains=False
+
+# Did you receive rents or royalties?
+have_rr=False
+
+# Are you self-employed (schedules C and SE)?
+self_emp=False
 
 ### py1040 options
 
