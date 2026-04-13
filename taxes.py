@@ -70,6 +70,7 @@ def charitable():
         cell_list[i].done=False
     current = -cell_list['f1040_refund'].value + cell_list['f1040_tax_owed'].value
 
+    """
     global f1040_sched_a_charity_cash
     f1040_sched_a_charity_cash= f1040_sched_a_charity_cash+ 100
 
@@ -78,6 +79,7 @@ def charitable():
 
     new = -cell_list['f1040_refund'].value + cell_list['f1040_tax_owed'].value
     print("If you gave another $100 to charity, your taxes would fall by $%g" % (current-new,))
+    """
 
 
 
@@ -131,6 +133,9 @@ if kids:
 if self_emp:
     print_a_form("Schedule C (self-employment income)", "f1040_sched_c")
     print_a_form("Schedule SE (self-employment tax)", "sched_se")
+if cap_gains:
+    print_a_form("Schedule D", "f1040_sched_d")
+    print_a_form("Qualified dividends worksheet", "qualified_dividends_ws")
 if have_rr:
     print_a_form("Schedule E", "f1040_sched_e")
     print_a_form("Form 8582", "f8582")
@@ -139,8 +144,6 @@ if s_loans:
     print_a_form("Form 8863: Education credits", "f8863")
     print_a_form("Form 8863ws", "f8863ws")
     print_a_form("Student loan worksheet", "student_loan_ws_1040")
-if cap_gains:
-    print_a_form("Qualified dividends worksheet", "qualified_dividends_ws")
 
 
 
